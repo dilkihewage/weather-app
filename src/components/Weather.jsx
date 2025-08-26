@@ -10,8 +10,9 @@ import windIcon from '../assets/wind.png'
 import humidityIcon from '../assets/humidity.png'
 
 const Weather = () => {
-    const inputRef =useRef();
+    const inputRef = useRef();
     const [weather, setWeatherData] = useState(null);
+    const [fadeIn, setFadeIn] = useState(false);
 
     const allIcons = {
         "01d": clearIcon,
@@ -35,17 +36,17 @@ const Weather = () => {
     };
 
     const search = async (city) => {
-        if (city==="") {
+        if (city === "") {
             alert("Please enter a city name")
             return;
         }
-        
+
         try {
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`;
             const res = await fetch(url);
             const data = await res.json();
 
-            if(!res.ok){
+            if (!res.ok) {
                 alert(data.message);
                 return;
             }
@@ -57,16 +58,24 @@ const Weather = () => {
                 location: data.name,
                 icon: icon
             });
+            setFadeIn(false);
+            setTimeout(() => setFadeIn(true), 50);
         } catch (error) {
             setWeatherData(false);
             console.error("Error fetching weather data:", error);
         }
     };
 
-    useEffect(() => { search("London") }, []);
+    useEffect(() => {
+        search("London");
+        setFadeIn(true);
+    }, []);
 
     return (
-        <div className='weather'>
+        <div className='weather' style={{
+            opacity: fadeIn ? 1 : 0,
+            transition: "opacity 0.7s cubic-bezier(.4,0,.2,1)"
+        }}>
             <div className='search-bar'>
                 <input ref={inputRef} placeholder='Search' />
                 <img src={searchIcon} alt="" onClick={() => search(inputRef.current.value)} />
