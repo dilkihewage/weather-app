@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { Auth0Provider } from '@auth0/auth0-react'
+import { BrowserRouter as Router } from "react-router-dom"
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN || import.meta.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID || import.meta.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -10,16 +11,18 @@ const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID || import.meta.env.REACT_A
 console.log("Auth0 domain:", domain);
 console.log("Auth0 clientId:", clientId);
 
-
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri={window.location.origin}
+      authorizationParams={{
+        redirect_uri: window.location.origin
+      }}
     >
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Auth0Provider>
   </StrictMode>,
 )

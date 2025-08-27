@@ -18,6 +18,15 @@ body {
   place-items: center;
 }
 
+/* Login background */
+.login-bg {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #2b4176 0%, #1a2236 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Login card */
 .login-card {
   max-width: 420px;

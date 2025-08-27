@@ -3,8 +3,9 @@ import Weather from './components/Weather'
 import LoginButton from "./components/Authentication/Login";
 import LogoutButton from "./components/Authentication/Logout";
 import { useAuth0 } from "@auth0/auth0-react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Splash from "./components/Splash";
+import Dashboard from "./components/Dashboard";
 
 
 function LoginRoute() {
@@ -24,9 +25,7 @@ function LoginRoute() {
       {!error && !isLoading && (
         <>
           <LoginButton />
-          <div className='app'>
-           
-          </div>
+          <div className='app'></div>
         </>
       )}
     </main>
@@ -35,14 +34,15 @@ function LoginRoute() {
 
 function App() {
   const { isAuthenticated } = useAuth0();
+  const location = useLocation();
 
   return (
-    <Router>
-      
-      {isAuthenticated && (
+    <>
+      {/* Show LogoutButton only on dashboard, top right corner */}
+      {isAuthenticated && location.pathname === "/dashboard" && (
         <div style={{
           position: "fixed",
-          bottom: 30,
+          top: 24,
           right: 32,
           zIndex: 1000
         }}>
@@ -53,8 +53,9 @@ function App() {
         <Route path="/" element={<Splash />} />
         <Route path="/login" element={<LoginRoute />} />
         <Route path="/weather" element={<Weather />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
