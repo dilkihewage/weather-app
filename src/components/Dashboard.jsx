@@ -106,7 +106,7 @@ export default function Dashboard() {
         flexDirection: "column",
         alignItems: "center"
       }}>
-        {/* Search bar */}
+       
         <div className="search-bar" style={{ maxWidth: 500, margin: "0 auto 32px auto" }}>
           <input
             ref={inputRef}
@@ -123,7 +123,7 @@ export default function Dashboard() {
             Add City
           </button>
         </div>
-        {/* Cards grid */}
+        
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",

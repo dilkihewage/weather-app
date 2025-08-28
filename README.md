@@ -1,12 +1,60 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Weather App
 
-Currently, two official plugins are available:
+A React weather dashboard app built with Vite, Auth0 authentication, and React Router.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- User authentication with Auth0
+- Weather dashboard and splash screen
+- Responsive UI
 
-## Expanding the ESLint configuration
+## Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or newer recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- Auth0 account (for authentication)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Setup Instructions
+
+1. **Clone the repository**
+	```powershell
+	git clone <your-repo-url>
+	cd weather-app
+	```
+
+2. **Install dependencies**
+	```powershell
+	npm install
+	```
+
+3. **Configure Auth0**
+	- Create a `.env` file in the project root with the following variables:
+	  ```env
+	  VITE_AUTH0_DOMAIN=your-auth0-domain
+	  VITE_AUTH0_CLIENT_ID=your-auth0-client-id
+	  ```
+	- Replace `your-auth0-domain` and `your-auth0-client-id` with your Auth0 app credentials.
+
+4. **Start the development server**
+	```powershell
+	npm run dev
+	```
+	The app will be available at [http://localhost:5173](http://localhost:5173).
+
+5. **Build for production**
+	```powershell
+	npm run build
+	```
+
+6. **Preview the production build**
+	```powershell
+	npm run preview
+	```
+
+## Scripts
+- `npm run dev` — Start the development server
+- `npm run build` — Build for production
+- `npm run preview` — Preview the production build
+- `npm run lint` — Run ESLint
+
+## License
+MIT
